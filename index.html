@@ -97,13 +97,10 @@
 <script>
 if (window.addEventListener) {
 window.addEventListener("load", adjustViewportUnit('[data-vunit="adjust"]'), false);
-  //window.addEventListener("resize", adjustViewportUnit('[data-vunit="adjust"]'));
 } else if (window.attachEvent) {
   window.attachEvent("onload", adjustViewportUnit('[data-vunit="adjust"]'));
-  //window.attachEvent("onresize", adjustViewportUnit('[data-vunit="adjust"]'));
 } else {
   window.onload = adjustViewportUnit('[data-vunit="adjust"]');
-  //window.onresize = adjustViewportUnit('[data-vunit="adjust"]');
 }
 </script>
 </html>
