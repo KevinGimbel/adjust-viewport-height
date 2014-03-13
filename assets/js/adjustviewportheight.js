@@ -7,6 +7,37 @@ function adjustViewportUnit(elements) {
       height = document.documentElement.clientHeight;
       //height = Math.max( body.scrollHeight, body.offsetHeight, 
       //                 html.clientHeight, html.scrollHeight, html.offsetHeight );
+
+var hasViewportHeight = function() {
+  // creating a ghost div 
+  var ghost = document.createElement('div'),
+      // getting the current window height
+      clientHeight = window.innerHeight || document.documentElement.clientHeight;
+  
+  // setting the ghost's height to 100vh
+  ghost.style.height = '100vh';
+  // and adding it to the body
+  document.body.appendChild(ghost);
+  
+  // next, we get the height of the element (computed, not the 100vh!)
+  var computedHeight = window.getComputedStyle(ghost).getPropertyValue('height');
+  // and remove the element so it doesn't hang around unwanted ;)
+  document.body.removeChild(ghost);
+  
+  /* now we test if the computedHeight equals the client height, if
+  it does the vieport unit is supported. 
+  */ 
+  if(computedHeight == clientHeight + 'px') {
+    return true;
+  }
+}
+
+    if(hasViewportHeight()) {
+      // viewport height is supported, no need to do anything \o/
+    } else {
+  
+
+
     if(document.querySelectorAll) {
       allElements = document.querySelectorAll(elements);
     } else {
@@ -33,5 +64,5 @@ function adjustViewportUnit(elements) {
          allElements[i].style.height = height + "px";
        }  
      } // for loop
-  
+  } // end of support check
  } // end of function
