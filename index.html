@@ -2,79 +2,85 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>AdjustViewportHeight(); - a tiny, pure JavaScript - kevingimbel.com</title>
+    <title>AdjustViewportHeight(); - kevingimbel.com</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width">
 </head>
 <body>
-    <section class="intro" data-vunit="adjust" data-vheight="100">
+    <div class="intro" data-vunit="adjust" data-vheight="100">
         <div class="center">
-            <h1>Use the power of the viewport height (<code>vh</code>) everywhere</h1>
+            <h1>Use the power of the viewport height unit everywhere</h1>
             <h3>Supported Browsers</h3>
             <span class="icon-chrome"> 14+</span>
-            <span class="icon-firefox"> 6+</span>
-            <span class="icon-safari"> 5.1+</span>
-            <span class="icon-opera"> 11.1+</span>
-            <span class="icon-IE">8+</span>
+            <span class="icon-firefox"> 4+</span>
+            <span class="icon-safari"> 4+</span>
+            <span class="icon-opera"> 10.6+</span>
+            <span class="icon-IE">8+<b>*</b></span>
+            <hr>
+            <small>All mentioned browsers tested with BrowserStack on OS X and Windows.<br /> iOS seems not to work (according to my BrowserStack tests), Android does work pretty well.</small>
+            <hr>
+            <br />
+            <h4>Download</h4>
+            <a class="button button__download" href="http://github.com/kevingimbel/adjust-viewport-height/blob/master/assets/js/avh.min.js">Minified (1.1kB)</a>
+            <a class="button button__download" href="http://github.com/kevingimbel/adjust-viewport-height/blob/master/assets/js/adjustviewportheight.js">Developer (5.5kB)</a>
         </div>
-    </section>
+    </div>
 
-<section class="usage" data-vunit="adjust" data-vheight="100">
+<div class="usage" data-vunit="adjust" data-vheight="100">
     <div class="center">
             <h2>Usage</h2>
-            <p>Include the <code>adjustviewportheight.js</code> in your page, call the function with a data-attribute of your choice (I prefere <code>data-vunit="adjust"</code>).</p>
+            <p>Include the <code>adjustviewportheight.js</code>, call the function with a data-attribute of your choice (I prefere <code>data-vunit="adjust"</code>).</p>
             <p>Then set the <code>data-vunit="adjust"</code> attribute to the elements you want to adjust.</p>
             <h3>Modern browsers, not IE 8-10</h3>
             <pre>
                 <code>
             # Works in all browsers (expect IE 8-10, but IE 11), sets the default height: 100vh;
-            &lt;section data-vunit="adjust">&lt;section>
+            &lt;div data-vunit="adjust">&lt;div>
                 </code>
             </pre>
             <h3>All browsers, custom height</h3>
-            <p>Optional (if IE 8-10 mustn't be supported) there is a <code>data-vheight</code> attribute for custom heights.</p>
+            <p>Optional: if IE 8-10 mustn't be supported there is a <code>data-vheight</code> attribute for custom heights. For IE 8-10 Support read on.</p>
             <pre>
                 <code>
             # Works in all browsers, equals height: 15vh; in 
-            &lt;section data-vunit="adjust" data-vheight="15">&lt;section>
+            &lt;div data-vunit="adjust" data-vheight="15">&lt;div>
                 </code>
             </pre>
     </div>
 
-</section>
+</div>
 
 
-    <section class="support" data-vunit="adjust" data-vheight="100">
+    <div class="support" data-vunit="adjust" data-vheight="100">
         <div class="center">
-            <h2>Works perfectly with every browser</h2>
-            <h3>but not Internet Explorer.</h3>
-            <p>Unfortunately in 8-10 you need to specify a <code>data-vheight</code> attribute, otherwise the height will not be set to 100vh (which is default)</p>
+            <h2>IE 8-10</h2>
+            <p>Unfortunately in IE 8-10 you need to specify a <code>data-vheight</code> attribute, otherwise the height will not be set to 100vh (which is default)</p>
             <h3>IE 8-10 fix</h3>
             <pre>
                 <code>
     # Works in all browsers and IE 8-10, sets height: 100vh;
-    &lt;section data-vunit="adjust" data-vheight="100">&lt;section>
+    &lt;div data-vunit="adjust" data-vheight="100">&lt;div>
                 </code>
             </pre>
         </div>
-    </section>
+    </div>
 
-    <section class="free" data-vunit="adjust" data-vheight="100">
+    <div class="free" data-vunit="adjust" data-vheight="100">
         <div class="center">
             <h2>Open and free <span class="love">&hearts;</span></h2>
             <p>This project is free for everything - commercial, private and every other use you could
                 think of. Just take it, modify it, <a href="http://github.com/kevingimbel/adjust-viewport-height">contribute</a> - whatever!
             </p> 
         </div>
-    </section>
+    </div>
 
-    <footer class="footer" data-vunit="adjust" data-vheight="50">
+    <div class="footer" data-vunit="adjust" data-vheight="50">
         <div class="center">
             <h3>Custom height</h3>
             <p>Just a quick example for custom height.</p>
         </div>
-    </footer>
+    </div>
 
     <div class="ch-1" data-vunit="adjust" data-vheight="30">
         <div class="center">
@@ -91,19 +97,16 @@
             <h3>Viewport Height: 15</h3>
         </div>
     </div>
-    <!-- section[data-vunit="adjust"] -->
+    <!-- div[data-vunit="adjust"] -->
 </body>
 <script type="text/javascript" src="assets/js/adjustviewportheight.js"></script>
-<script>
+<script type="text/javascript">
 if (window.addEventListener) {
-window.addEventListener("load", adjustViewportUnit('[data-vunit="adjust"]'), false);
-  //window.addEventListener("resize", adjustViewportUnit('[data-vunit="adjust"]'));
+window.addEventListener('load', adjustViewportHeight('[data-vunit="adjust"]'), false);
 } else if (window.attachEvent) {
-  window.attachEvent("onload", adjustViewportUnit('[data-vunit="adjust"]'));
-  //window.attachEvent("onresize", adjustViewportUnit('[data-vunit="adjust"]'));
+  window.attachEvent('onload', adjustViewportHeight('[data-vunit="adjust"]'));
 } else {
-  window.onload = adjustViewportUnit('[data-vunit="adjust"]');
-  //window.onresize = adjustViewportUnit('[data-vunit="adjust"]');
+  window.onload = adjustViewportHeight('[data-vunit="adjust"]');
 }
 </script>
 </html>
