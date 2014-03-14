@@ -1,6 +1,6 @@
 @import "compass";
 
-$font:  'Open Sans', sans-serif;
+$font:  'Open Sans', Arial, Helvetica, sans-serif;
 
 @font-face {
     font-family: 'browser';
@@ -57,6 +57,7 @@ body {
 
 pre {
     background: #333;
+    overflow-x: scroll;
     code {
         width: 100%;
         text-align: none;
@@ -76,11 +77,33 @@ span {
     }
 }
 
+section, footer {
+    display: block !important;
+}
+
 .center {
+    width: 100%;
+    max-width: 50em;
     position: absolute;
     top: 50%;
     left: 50%;
     @include translate(-50%, -50%);
+    
+    /* IE doesn't like this way of centering stuff so we reset everything
+       to prevent the demo from being broken in IE.
+       This targets IE6-10.
+    */
+    position: relative\9;
+    top: 0\9;
+    left: 0\9;
+}
+
+hr {
+    width: 100%;
+    height: 1px;
+    border: none;
+    background: #fff;
+    margin: .5em 0;
 }
 
 %relative {
@@ -95,43 +118,109 @@ span {
 .intro {
     text-align: center;
     background: #12ddac;
+    height: 100vh;
+    width: 100%;
     @extend %relative;
 }
 
 .support {
     background: #ddd;
     padding: 5em;
+    height: 100vh;
+    width: 100%;
     @extend %relative;
 }
 
+
 .free {
     background: #cdff99;
+    height: 100vh;
+    width: 100%;
     @extend %relative;
 }
 
 .usage {
     background: #ff9900;
+    height: 100vh;
+    width: 100%;
     @extend %relative;
 }
 
 .footer {
     background: #A5DE37;
+    height: 50vh;
+    width: 100%;
     @extend %relative;
 }
 
 .ch-1 {
     background: #333;
     color: #ddd;
+    height: 30vh;
     @extend %relative;
 }
 
 .ch-2 {
     background: #FD6631;
+    height: 66vh;
     @extend %relative;
 }
 
 .ch-3 {
     background: #1B9AF7;
     color: #fff;
+    height: 15vh;
     @extend %relative;   
+}
+
+
+
+button, .button {
+  @include appearance(none);
+  border: none;
+  padding: .5em 1em;
+  
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.button__download {
+  position: relative;
+  margin: 1em 0;
+  color: white;
+  text-decoration: none;
+
+  @include background(linear-gradient(top, #1B9AF7, #3498db));
+
+  &:before, &:after {
+    position: absolute;
+    top: 0;  
+  }
+  &:after {
+    content: '';
+    width: 2em;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    border-left: 1px solid darken(#3498db, 10%);
+    @include background(linear-gradient(top, #1B9AF7, #3498db));
+  }
+  
+  &:before {
+    content: '›';
+    font-size: 2em;
+    line-height: 1;
+    left: 100%;
+    top: 50%;
+    width: 1em;
+    height: 100%;
+    @include translateY(-50%);
+    z-index: 1;
+  }
+
+  &:nth-child(even) {
+    margin-left: 5em;
+  }
 }
